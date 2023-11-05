@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="revealjs/dist/reset.css">
 		<link rel="stylesheet" href="revealjs/dist/reveal.css">
-		<link rel="stylesheet" href="revealjs/dist/theme/black.css">
+		<link rel="stylesheet" href="revealjs/dist/theme/night.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="revealjs/plugin/highlight/monokai.css">
@@ -16,7 +16,226 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-external="slide.html"/>
+				<section>
+					<h2>Inferencing 서비스 개발</h2>
+					<hr/>
+					<p>이정훈</p>
+				</section>
+				<section>
+					<section>
+						<h2>강의 개요</h2>
+					</section>
+					<section>
+						<h3>강의 목표</h3>
+						<p>이미 만들어진 모델을 Web에 올려 사용할 수 있도록 합니다.</p>
+					</section>
+					<section>
+						<h3>강의 대상</h3>
+						<ul>
+							<li>Python을 좀 할 줄 아는 개발자</li>
+							<li>Web 개발이 익숙하지 않은 분</li>
+						</ul>
+					</section>
+					<section>
+						<h3>저만의 강의 목표</h3>
+						<ul>
+							<li>강의의 메인 주제는 가능한 쉽게 풀어봅니다.</li>
+							<li>(주워 듣는 내용이 있도록) 다양한 주제를 풀어봅니다.</li>
+						</ul>
+					</section>
+					<section>
+						<h3>강의 운영</h3>
+						<ul>
+							<li>슬라이드만 봐도 Cover가 되게 구성</li>
+							<li></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<h3>강의 목차</h3>
+					<hr/>
+					<ol>
+						<li>이론</li>
+						<li>머신러닝 모델 학습/추론</li>
+						<li>Streamlit</li>
+						<li>(실습) Streamlit</li>
+						<li>(실습) 딥러닝 모델 추론</li>
+						<li>(실습) ChatGPT 연동</li>
+					</ol>
+				</section>
+				<section>
+					<section>
+						<h2>머신러닝</h2>
+					</section>
+					<section>
+						<h2>Y의 값을 예측해보세요</h2>
+
+						<div class="r-stack">
+							<table class="fragment fade-in-then-out">
+								<tr>
+									<th>X</th>
+									<th>Y</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>10</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>20</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>30</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>40</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>?</td>
+								</tr>
+							</table>
+	
+							<table class="fragment fade-in-then-out">
+								<tr>
+									<th>X<sub>1</sub></th>
+									<th>X<sub>2</sub></th>
+									<th>Y</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>2</td>
+									<td>4</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>3</td>
+									<td>7</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>7</td>
+									<td>13</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>1</td>
+									<td>9</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>5</td>
+									<td>?</td>
+								</tr>
+							</table>
+
+							<table class="fragment fade-in-then-out">
+								<tr>
+									<th>X<sub>1</sub></th>
+									<th>X<sub>2</sub></th>
+									<th>...</th>
+									<th>X<sub>100</sub></th>
+									<th>Y</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>2</td>
+									<td>...</td>
+									<td>7</td>
+									<td>17</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>11</td>
+									<td>...</td>
+									<td>5</td>
+									<td>66</td>
+								</tr>
+								<tr>
+									<td>33</td>
+									<td>1</td>
+									<td>...</td>
+									<td>6</td>
+									<td>48</td>
+								</tr>
+								<tr>
+									<td>45</td>
+									<td>13</td>
+									<td>...</td>
+									<td>28</td>
+									<td>99</td>
+								</tr>
+								<tr>
+									<td>38</td>
+									<td>6</td>
+									<td>...</td>
+									<td>88</td>
+									<td class="red">?</td>
+								</tr>
+							</table>
+						</div>
+						
+					</section>
+					<section>
+						<h3>머신러닝이란?</h3>
+						
+					</section>
+					<section>
+						<h3>y = f(X)</h3>
+						<p> 입력값 X(x<sub>1</sub>, x<sub>2</sub> ..)에 어떤 로직 f를 적용하면 결과값 y가 나옵니다.</p>
+
+						<hr/>
+
+						<p class="fragment">입력값 X와 로직 f를 알려줄께, y값을 구해줘</p>
+						<p class="fragment">입력값 X와 출력값 y를 알려줄께, f를 좀 알아내줘</p>
+
+					</section>
+					
+					<section>
+						<h3>간단한 용어 설명</h3>
+						<p>X feature</p>
+						<p>Y target</p>
+						<p>f model</p>
+						<p>학습 : X, y -> f </p>
+						<p>추론 : f(X') -> y' </p>
+					</section>
+					<section>
+						<h3>Regression vs Classification</h3>
+						<p>
+							Regression : 수치를 예측
+						</p>
+						<p>
+							Classification : 분류
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h5>Optional</h5>
+						<h2>AutoML 모델 만들기</h2>
+						<h4>PyCaret</h4>
+					</section>
+					<section>
+						<h3>Pycaret</h3>
+						<p>https://pycaret.org/</p>
+						<p>An open-source, low-code machine learning library in Python</p>
+					</section>
+					<section>
+						<h3>가상환경을 하나 만들어주세요.</h3>
+						<code>
+							python -m venv .automl
+						</code>
+					</section>
+					<section>
+						<pre data-id="code-animation"><code class="shell" data-trim>
+							pip install jupyter
+						</code></pre>
+					</section>
+				</section>
+				
+				<!--section data-external="slide.html"/-->
 			</div>
 		</div>
 
@@ -30,6 +249,7 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				slideNumber: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
