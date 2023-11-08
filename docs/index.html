@@ -8,234 +8,2110 @@
 
 		<link rel="stylesheet" href="revealjs/dist/reset.css">
 		<link rel="stylesheet" href="revealjs/dist/reveal.css">
-		<link rel="stylesheet" href="revealjs/dist/theme/night.css">
+		<link rel="stylesheet" href="revealjs/dist/normalize.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="revealjs/plugin/highlight/monokai.css">
 	</head>
 	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h2>Inferencing 서비스 개발</h2>
-					<hr/>
-					<p>이정훈</p>
-				</section>
-				<section>
-					<section>
-						<h2>강의 개요</h2>
-					</section>
-					<section>
-						<h3>강의 목표</h3>
-						<p>이미 만들어진 모델을 Web에 올려 사용할 수 있도록 합니다.</p>
-					</section>
-					<section>
-						<h3>강의 대상</h3>
-						<ul>
-							<li>Python을 좀 할 줄 아는 개발자</li>
-							<li>Web 개발이 익숙하지 않은 분</li>
-						</ul>
-					</section>
-					<section>
-						<h3>저만의 강의 목표</h3>
-						<ul>
-							<li>강의의 메인 주제는 가능한 쉽게 풀어봅니다.</li>
-							<li>(주워 듣는 내용이 있도록) 다양한 주제를 풀어봅니다.</li>
-						</ul>
-					</section>
-					<section>
-						<h3>강의 운영</h3>
-						<ul>
-							<li>슬라이드만 봐도 Cover가 되게 구성</li>
-							<li></li>
-						</ul>
-					</section>
-				</section>
-				<section>
-					<h3>강의 목차</h3>
-					<hr/>
-					<ol>
-						<li>이론</li>
-						<li>머신러닝 모델 학습/추론</li>
-						<li>Streamlit</li>
-						<li>(실습) Streamlit</li>
-						<li>(실습) 딥러닝 모델 추론</li>
-						<li>(실습) ChatGPT 연동</li>
-					</ol>
-				</section>
-				<section>
-					<section>
-						<h2>머신러닝</h2>
-					</section>
-					<section>
-						<h2>Y의 값을 예측해보세요</h2>
-
-						<div class="r-stack">
-							<table class="fragment fade-in-then-out">
-								<tr>
-									<th>X</th>
-									<th>Y</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>10</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>20</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>30</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>40</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>?</td>
-								</tr>
-							</table>
-	
-							<table class="fragment fade-in-then-out">
-								<tr>
-									<th>X<sub>1</sub></th>
-									<th>X<sub>2</sub></th>
-									<th>Y</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>2</td>
-									<td>4</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>3</td>
-									<td>7</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>7</td>
-									<td>13</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>1</td>
-									<td>9</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>5</td>
-									<td>?</td>
-								</tr>
-							</table>
-
-							<table class="fragment fade-in-then-out">
-								<tr>
-									<th>X<sub>1</sub></th>
-									<th>X<sub>2</sub></th>
-									<th>...</th>
-									<th>X<sub>100</sub></th>
-									<th>Y</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>2</td>
-									<td>...</td>
-									<td>7</td>
-									<td>17</td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>11</td>
-									<td>...</td>
-									<td>5</td>
-									<td>66</td>
-								</tr>
-								<tr>
-									<td>33</td>
-									<td>1</td>
-									<td>...</td>
-									<td>6</td>
-									<td>48</td>
-								</tr>
-								<tr>
-									<td>45</td>
-									<td>13</td>
-									<td>...</td>
-									<td>28</td>
-									<td>99</td>
-								</tr>
-								<tr>
-									<td>38</td>
-									<td>6</td>
-									<td>...</td>
-									<td>88</td>
-									<td class="red">?</td>
-								</tr>
-							</table>
+		
+		<div class="theme-font-overpass2 theme-color-white-blue" style="width: 100%; height: 100%;">
+			<div class="reveal">
+				<div class="slides">
+					<section data-background-color="rgb(229, 230, 226)">
+						<div class="sl-block" data-block-type="text" style="width: 876px; left: 202px; top: 214px; height: auto;">
+							<div class="sl-block-content" style="z-index: 12; padding: 20px; line-height: 1.04; font-size: 110%;" data-has-line-height="">
+								<h1>Inferencing Service 개발</h1>
+							</div>
 						</div>
-						
+						<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 310px;">
+							<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 13;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+									<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+									<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+								</svg></div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 877px; left: 201px; top: 310px; height: auto;" data-name="text-d18e72">
+							<div class="sl-block-content" style="z-index: 14; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+								<p>이정훈</p>
+							</div>
+						</div>
+					</section>
+					<section class="stack">
+						<section>
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 166.5px; height: auto;" data-name="text-5e88d9">
+								<div class="sl-block-content" style="z-index: 10; text-align: left; font-size: 120%;">
+									<p style="text-align:justify">이미 만들어진 모델을 Web에 서빙할 수 있도록 실습합니다</p>
+								</div>
+							</div>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 39.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>강의 개요</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 106.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 166.5px; height: auto;" data-name="text-5e88d9">
+								<div class="sl-block-content" style="z-index: 10; text-align: left; font-size: 120%;">
+									<ul>
+										<li style="text-align:justify">python을 좀 할 줄 아는 개발자</li>
+										<li style="text-align:justify"><s>Web 개발이 익숙하지 않은 분</s></li>
+										<li style="text-align:justify">&nbsp;</li>
+									</ul>
+								</div>
+							</div>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 39.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>강의 대상</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 106.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 167.5px; height: auto;" data-name="text-5e88d9">
+								<div class="sl-block-content" style="z-index: 10; text-align: left; font-size: 120%;">
+									<ul>
+										<li style="text-align:justify">streamlit을 사용해서 간단한 웹 서비스를 만들어봅니다</li>
+										<li style="text-align:justify">&nbsp;</li>
+									</ul>
+								</div>
+							</div>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 39.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>강의 목표</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 106.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 167.5px; height: auto;" data-name="text-5e88d9">
+								<div class="sl-block-content" style="z-index: 10; text-align: left; font-size: 120%;">
+									<ul>
+										<li style="text-align:justify">편하고 쉽지만 얻어가는 것이 있도록 합니다.
+											<ul>
+												<li style="text-align:justify">메인 주제는 가능한 쉽게 풀어봅니다.</li>
+												<li style="text-align:justify">(주워 듣는 내용이 있도록) 다양한 주제를 풀어봅니다.
+													<ul>
+														<li style="text-align:justify">&nbsp;문 앞까지는 갈 수 있도록</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 39.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>(저만의) 강의 목표</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 106.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 167.5px; height: auto;" data-name="text-5e88d9">
+								<div class="sl-block-content" style="z-index: 10; text-align: left; font-size: 120%;">
+									<ul>
+										<li style="text-align:justify">슬라이드만 봐도 대부분 Cover 되게 구성합니다.</li>
+										<li style="text-align:justify">사내강의의 특성을 고려할께요.</li>
+										<li style="text-align:justify">8시간? 7시간? 실제로는 7-⍺</li>
+									</ul>
+								</div>
+							</div>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 39.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>강의 운영</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 106.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 203.5px; height: auto;" data-name="text-5e88d9">
+								<div class="sl-block-content" style="z-index: 10; text-align: left; font-size: 120%;">
+									<ul>
+										<li style="text-align:justify">Streamlit Cloud 배포
+											<ul>
+												<li style="text-align:justify">github : https://github.com/</li>
+												<li style="text-align:justify">streamlit : https://streamlit.io/</li>
+											</ul>
+										</li>
+										<li style="text-align:justify">Huggingface Space 만들기
+											<ul>
+												<li style="text-align:justify">huggingface : https://huggingface.co/</li>
+											</ul>
+										</li>
+										<li style="text-align:justify">ChatGPT 연동 실습
+											<ul>
+												<li style="text-align:justify">openai : https://platform.openai.com/</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 36.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>필요한 사항</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 103.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-91425d" style="height: auto; width: 600px; left: 337.5px; top: 116px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>실습을 위해서 일부 서비스 가입이 필요합니다.</p>
+								</div>
+							</div>
+						</section>
 					</section>
 					<section>
-						<h3>머신러닝이란?</h3>
-						
+						<div class="sl-block" data-block-type="text" style="width: 586.75px; left: 647.75px; top: 248.75px; height: auto;">
+							<div class="sl-block-content" style="z-index: 11; text-align: left; border-width: 1px; padding: 12px;">
+								<ul>
+									<li class="">
+										<p>AccuInsight+ 개발</p>
+		
+										<ul>
+											<li class="">
+												<p>AutoML 모듈 (AccuTuning)</p>
+											</li>
+										</ul>
+									</li>
+									<li class="">
+										<p>python, django, airflow&nbsp;</p>
+									</li>
+									<li class="">
+										<p>공부하기 좋아하는 backend 개발자</p>
+									</li>
+									<li class="">
+										<p>사업팀에서 Java쪽을 오래 했습니다</p>
+		
+										<ul>
+											<li class="">
+												<p>SKI HR System</p>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 671px; top: 248.75px;">
+							<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="100" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12; transition-duration: 0.6s; transition-delay: 0.5s;" data-line-width="4px" data-animation-type="slide-down"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="100" height="1" viewBox="0 0 100 1">
+									<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="100" y2="0"></line>
+									<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="100" y2="0"></line>
+								</svg></div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 444.5px; left: 661px; top: 182.75px; height: auto;" data-name="text-6dae06">
+							<div class="sl-block-content" style="text-align: left; z-index: 15; padding: 10px; font-size: 110%;">
+								<h2>이정훈</h2>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="image" data-name="image-dba733" style="width: 466.667px; height: 700px; left: 160px; top: 10px; min-width: 1px; min-height: 1px;">
+							<div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="1920" data-natural-height="2880" data-lazy-loaded="" data-src="https://images.unsplash.com/photo-1515595967223-f9fa59af5a3b?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1920&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjIwNzA2fQ"></div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+							<div class="sl-block-content" style="text-align: center; z-index: 13; padding: 5px; line-height: 1.17;" data-has-line-height="">
+								<h1>강사 소개</h1>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 590px; top: 121.5px;" data-name="line-7380b6">
+							<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 14;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+									<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+									<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+								</svg></div>
+						</div>
+					</section>
+					<section data-background-color="rgb(229, 230, 226)">
+		
+		
+						<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 100.5px; height: auto;" data-name="text-c29943">
+							<div class="sl-block-content" style="text-align: left; z-index: 10;">
+								<h2><strong>Index</strong></h2>
+							</div>
+						</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+						<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 240px; top: 151px;" data-name="line-79aed3">
+							<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="106.61835748792271" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 16;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="106.61835748792271" height="1" viewBox="0 0 106.61835748792271 1">
+									<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="106.61835748792271" y2="0"></line>
+									<line class="line-element" stroke="#000000" stroke-width="4" x1="0" y1="0" x2="106.61835748792271" y2="0"></line>
+								</svg></div>
+						</div>
+						<div class="sl-block sl-block-group" data-block-type="group" data-name="group-4cebe8" style="height: auto;">
+							<div class="sl-block-content sl-block-group-content" style="transform-origin: 486px 249.5px; z-index: 11;">
+								<div class="sl-block" data-block-type="text" style="width: 510px; left: 231px; top: 216px; height: auto;" data-name="text-c5947b"><a class="sl-block-style" style="z-index: 14;" href="#/our-services">
+										<div class="sl-block-content" style="text-align: left; z-index: 14; font-size: 110%; border-width: 4px; line-height: 1.17; border-color: rgb(0, 0, 0); padding: 10px; color: rgb(0, 0, 0);" data-has-line-height="">
+											<p>M/L Model</p>
+										</div>
+									</a></div>
+								<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 243px; top: 282px;"><a class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="433" data-line-y2="0" data-line-color="#222222" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 15;" data-line-width="4px" href="#/our-services"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="433" height="1" viewBox="0 0 433 1">
+											<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="430" y2="0"></line>
+											<line class="line-element" stroke="#222222" stroke-width="4" x1="0" y1="0" x2="430" y2="0"></line>
+											<path style="fill: rgba(0,0,0,0);" stroke="#222222" stroke-width="4" transform="translate(430,0) rotate(90)" d="M 9 9 L 0 0 L -9 9"></path>
+										</svg></a></div>
+							</div>
+						</div>
+						<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-6497f2">
+							<div class="sl-block-content sl-block-group-content" style="transform-origin: 486px 351px; z-index: 17;">
+								<div class="sl-block" data-block-type="text" style="width: 510px; left: 231px; top: 319px; height: auto;" data-name="text-7aea17"><a class="sl-block-style" style="z-index: 20;" href="#/process">
+										<div class="sl-block-content" style="text-align: left; z-index: 20; font-size: 110%; border-width: 4px; line-height: 1.17; border-color: rgb(0, 0, 0); padding: 10px; color: rgb(0, 0, 0);" data-has-line-height="">
+											<p>Streamlit</p>
+										</div>
+									</a></div>
+								<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 243px; top: 382px;" data-name="line-674866"><a class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="433" data-line-y2="0" data-line-color="#222222" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 21;" data-line-width="4px" href="#/process"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="433" height="1" viewBox="0 0 433 1">
+											<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="430" y2="0"></line>
+											<line class="line-element" stroke="#222222" stroke-width="4" x1="0" y1="0" x2="430" y2="0"></line>
+											<path style="fill: rgba(0,0,0,0);" stroke="#222222" stroke-width="4" transform="translate(430,0) rotate(90)" d="M 9 9 L 0 0 L -9 9"></path>
+										</svg></a></div>
+							</div>
+						</div>
+						<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-eacb85">
+							<div class="sl-block-content sl-block-group-content" style="transform-origin: 486px 457px; z-index: 22;">
+								<div class="sl-block" data-block-type="text" style="width: 510px; left: 231px; top: 425px; height: auto;" data-name="text-71eca7"><a class="sl-block-style" style="z-index: 25;" href="#/team">
+										<div class="sl-block-content" style="text-align: left; z-index: 25; font-size: 110%; border-width: 4px; line-height: 1.17; border-color: rgb(0, 0, 0); padding: 10px; color: rgb(0, 0, 0);" data-has-line-height="">
+											<p>D/L Model</p>
+										</div>
+									</a></div>
+								<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 243px; top: 488px;" data-name="line-f42094"><a class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="433" data-line-y2="0" data-line-color="#222222" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 26;" data-line-width="4px" href="#/team"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="433" height="1" viewBox="0 0 433 1">
+											<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="430" y2="0"></line>
+											<line class="line-element" stroke="#222222" stroke-width="4" x1="0" y1="0" x2="430" y2="0"></line>
+											<path style="fill: rgba(0,0,0,0);" stroke="#222222" stroke-width="4" transform="translate(430,0) rotate(90)" d="M 9 9 L 0 0 L -9 9"></path>
+										</svg></a></div>
+							</div>
+						</div>
+						<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-3745a8">
+							<div class="sl-block-content sl-block-group-content" style="transform-origin: 486px 570px; z-index: 27;">
+								<div class="sl-block" data-block-type="text" style="width: 510px; left: 231px; top: 538px; height: auto;" data-name="text-515ed0"><a class="sl-block-style" style="z-index: 30;" href="#/our-clients">
+										<div class="sl-block-content" style="text-align: left; z-index: 30; font-size: 110%; border-width: 4px; line-height: 1.17; border-color: rgb(0, 0, 0); padding: 10px; color: rgb(0, 0, 0);" data-has-line-height="">
+											<p>LLM Model</p>
+										</div>
+									</a></div>
+								<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 243px; top: 601px;" data-name="line-edd75d"><a class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="433" data-line-y2="0" data-line-color="#222222" data-line-start-type="none" data-line-end-type="line-arrow" style="z-index: 31;" data-line-width="4px" href="#/our-clients"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="433" height="1" viewBox="0 0 433 1">
+											<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="430" y2="0"></line>
+											<line class="line-element" stroke="#222222" stroke-width="4" x1="0" y1="0" x2="430" y2="0"></line>
+											<path style="fill: rgba(0,0,0,0);" stroke="#222222" stroke-width="4" transform="translate(430,0) rotate(90)" d="M 9 9 L 0 0 L -9 9"></path>
+										</svg></a></div>
+							</div>
+						</div>
+					</section>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 876px; left: 202px; top: 214px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>Machine Learning</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 305px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 877px; left: 201px; top: 305px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>가볍게 접근하기</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Y의 값을 예측해보세요.</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 121.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="table" data-name="table-d77027" style="height: auto; min-width: 120px; width: 217px; left: 204px; top: 131.5px;">
+								<div class="sl-block-content fragment" style="z-index: 12; text-align: center;" data-table-cols="2" data-table-rows="6" data-table-has-header="true" data-fragment-index="0">
+									<table>
+										<tbody>
+											<tr>
+												<th>X</th>
+												<th>Y</th>
+											</tr>
+											<tr>
+												<td>1</td>
+												<td>10</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>20</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>30</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>40</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>?</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="table" style="height: auto; min-width: 120px; width: 288px; left: 446px; top: 160.5px;" data-name="table-a0d5a2">
+								<div class="sl-block-content fragment" style="z-index: 13; text-align: center;" data-table-cols="3" data-table-rows="6" data-table-has-header="true" data-fragment-index="1">
+									<table>
+										<tbody>
+											<tr>
+												<th>X<sub>1</sub>
+												</th>
+												<th>X<sub>2</sub>
+												</th>
+												<th>Y</th>
+											</tr>
+											<tr>
+												<td>1</td>
+												<td>2</td>
+												<td>4</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>3</td>
+												<td>7</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>7</td>
+												<td>13</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>1</td>
+												<td>9</td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>6</td>
+												<td>?</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="table" style="height: auto; min-width: 120px; width: 288px; left: 772px; top: 294.5px;" data-name="table-69fe24">
+								<div class="sl-block-content fragment" style="z-index: 14; text-align: center;" data-table-cols="5" data-table-rows="6" data-table-has-header="true" data-fragment-index="2">
+									<table>
+										<tbody>
+											<tr>
+												<th>X<sub>1</sub>
+												</th>
+												<th>X2</th>
+												<th>...</th>
+												<th>X</th>
+												<th>Y</th>
+											</tr>
+											<tr>
+												<td>1</td>
+												<td>2</td>
+												<td>4</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>3</td>
+												<td>7</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>7</td>
+												<td>13</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>1</td>
+												<td>9</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>5</td>
+												<td>6</td>
+												<td>?</td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</section>
+						<section data-background-image="https://images.unsplash.com/photo-1524055988636-436cfa46e59e?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwyMDcwNnwwfDF8c2VhcmNofDEwN3x8bWluaW1hbHxlbnwwfHx8fDE2Mzg1MjY3MDQ&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1920">
+		
+		
+		
+		
+		
+		
+		
+		
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-8d615c" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 885px 381.5px; z-index: 10;">
+		
+									<div class="sl-block" data-block-type="shape" style="width: 430px; height: 362.5px; left: 670px; top: 200.25px;" data-name="shape-5ac6ee">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 430 363">
+												<rect width="430" height="362.5" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 430px; left: 670px; top: 281.25px; height: auto;" data-name="text-d18e72">
+										<div class="sl-block-content" style="z-index: 12; text-align: left; line-height: 1.95; padding: 20px;" data-has-line-height="">
+											<ul>
+												<li>입력값 X와</li>
+												<li>출력값 y를 알려줄께</li>
+												<li>f를 좀 알아내줘</li>
+											</ul>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 430px; left: 670px; top: 200.25px; height: auto;" data-name="text-c29943">
+										<div class="sl-block-content" style="text-align: left; z-index: 13; padding: 20px;">
+											<h2><strong>X, y -&gt; f</strong></h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 670px; top: 280.25px;">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="430" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 15;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="430" height="1" viewBox="0 0 430 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="430" y2="0"></line>
+												<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="430" y2="0"></line>
+											</svg></div>
+									</div>
+								</div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" style="height: auto;" data-name="group-161842">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 400px 381.5px; z-index: 16;">
+		
+									<div class="sl-block" data-block-type="shape" style="width: 430px; height: 362.5px; left: 185px; top: 200.25px;" data-name="shape-2de88c">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 17;" data-shape-stroke-color="#f2ede8" data-shape-stroke-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 430 363">
+												<defs>
+													<clipPath id="shape-mask-1-1699372379934">
+														<rect width="430" height="362.5" rx="0" ry="0" fill="rgb(255, 255, 255)" stroke="#f2ede8" stroke-width="8"></rect>
+													</clipPath>
+												</defs>
+												<rect width="430" height="362.5" rx="0" ry="0" class="shape-element" fill="rgb(255, 255, 255)" stroke="#f2ede8" stroke-width="8" clip-path="url(#shape-mask-1-1699372379934)"></rect>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 430px; left: 185px; top: 280.25px; height: auto;" data-name="text-2d1438">
+										<div class="sl-block-content" style="z-index: 18; text-align: left; line-height: 1.95; padding: 20px;" data-has-line-height="">
+											<ul>
+												<li>입력값 X와</li>
+												<li>아주 복잡한 로직 f를 알려줄께</li>
+												<li><span style="color:#111111">빨리 계산해서 y를 알려줘</span></li>
+											</ul>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 430px; left: 185px; top: 200.25px; height: auto;" data-name="text-66cbb8">
+										<div class="sl-block-content" style="text-align: left; z-index: 19; padding: 20px;">
+											<h2>F(x) -&gt; Y</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 185px; top: 280.25px;" data-name="line-e21456">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="430" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 21;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="430" height="1" viewBox="0 0 430 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="430" y2="0"></line>
+												<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="430" y2="0"></line>
+											</svg></div>
+									</div>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-591b13">
+								<div class="sl-block-content" style="text-align: center; z-index: 22; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>y=f(x)</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" style="width: auto; height: auto; left: 590px; top: 121.5px;" data-name="line-36eab4">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 23;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 244px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>간단한 용어 설명</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 594px; top: 121.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-b849b0" style="height: auto; width: 600px; left: 356px; top: 127px;">
+								<div class="sl-block-content" style="z-index: 12; font-size: 120%;">
+									<pre style="text-align:center"><span style="color:#0000ff">y = f(X)</span></pre>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-e5dd7a" style="height: auto; width: 600px; left: 340px; top: 342px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<ul>
+										<li>
+											<p>y : target</p>
+										</li>
+										<li>
+											<p>X : feature&nbsp;</p>
+										</li>
+										<li>
+											<p>f : model</p>
+										</li>
+										<li>
+											<p>X, Y -&gt; f : 학습</p>
+										</li>
+										<li>
+											<p>f(X') -&gt; y' : 예측</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 180px; left: 224px; top: 100px; height: auto;" data-name="text-1440c2" data-locked="true">
+								<div class="sl-block-content" style="text-align: left; z-index: 10; font-size: 500%; color: rgb(198, 194, 190);">
+									<h1>〞</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 249px; top: 214.5px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 11; text-align: left; font-size: 160%;">
+									<p><em>Inference is when you use that model to learn about things that happened in the past. However, prediction is when you use your model to make predictions in the future</em></p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 12; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Inference vs Predict</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 121.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 13;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-5f7f42" style="height: auto; width: 902px; left: 198px; top: 555px;">
+								<div class="sl-block-content" style="z-index: 14; text-align: left;">
+									<p>https://xpresso.ai/resources/blogs/understanding-the-difference-between-inference-and-prediction/</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-addc8a" style="height: auto; width: 189px; left: 16.155px; top: 12.461px;">
+								<div class="sl-block-content" style="z-index: 15;">
+									<p>(Optional)</p>
+								</div>
+							</div>
+						</section>
+					</section>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 876px; left: 202px; top: 214px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>PyCaret</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 305px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 877px; left: 201px; top: 305px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>PyCaret으로 AutoML 모델 만들기</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-addc8a" style="height: auto; width: 189px; left: 16.155px; top: 12.461px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>(Optional)</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 180px; left: 64px; top: 90px; height: auto;" data-name="text-1440c2" data-locked="true">
+								<div class="sl-block-content" style="text-align: left; z-index: 10; font-size: 500%; color: rgb(198, 194, 190);">
+									<h1>〞</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 29px; top: 220.5px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 11; text-align: left; font-size: 160%;">
+									<p>An open-source, low-code machine learning library in Python</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 12; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>PyCaret</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 121.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 13;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-134eab" style="width: 475.957px; height: 532.8px; left: 780.022px; top: 93.6px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 14;"><img class="" data-natural-width="1122" data-natural-height="1256" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10891443/pasted-from-clipboard.png"></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-8bf862" style="height: auto; width: 600px; left: 114px; top: 459px;">
+								<div class="sl-block-content" style="z-index: 15;">
+									<p>https://pycaret.org/</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 1146px; left: 80px; top: 44.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>이 정도 코드만 알면 됩니다</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 619.5px; top: 95.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="code" data-name="code-ef67e0" style="width: 902px; height: 352px; left: 189px; top: 174px;">
+								<div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 13;">
+									<pre style="font-size: 20px; line-height: 24px;" class="python"><code data-line-numbers="">import pandas as pd
+		from pycaret.classification import *
+		
+		df = pd.read_csv('&lt;filename&gt;')
+		s = setup(df, target='&lt;target column&gt;', session_id=123)
+		best = compare_models()
+		save_model(best, '&lt;modelfile name&gt;')
+		
+		loaded_pipeline = load_model('&lt;modelfile name&gt;')
+		predict_model(loaded_pipeline, data=new_df)</code></pre>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 1146px; left: 80px; top: 44.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>python 가상환경을 만들어주세요.</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 619.5px; top: 95.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="code" data-name="code-f74bfb" style="width: 595px; height: 161px; left: 365px; top: 191px;">
+								<div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 12;">
+									<pre class="python" style="font-size: 30px; line-height: 36px;"><code>python -m venv .venv-pycaret</code></pre>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 1146px; left: 80px; top: 44.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>가상환경에 필요 package를 설치해주세요.</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 619.5px; top: 95.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="code" data-name="code-f74bfb" style="width: 616px; height: 300px; left: 345px; top: 191px;">
+								<div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 12;">
+									<pre class="python" style="font-size: 30px; line-height: 36px;"><code>pip install jupyter pycaret</code></pre>
+								</div>
+							</div>
+						</section>
+					</section>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 876px; left: 202px; top: 214px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>Model 공유</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 305px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 877px; left: 201px; top: 305px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>만든 모델을 다른 사람에게 공유하려면..</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 44.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Jupyter Notebook을 공유</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 592.5px; top: 95.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-0fc3c1" style="height: auto; width: 780px; left: 187.943px; top: 240.293px;">
+								<div class="sl-block-content" style="z-index: 12; font-size: 130%;">
+									<ul>
+										<li>code로 보는 게 익숙하지 않다.</li>
+										<li>필요한 package를 설치해야 한다.</li>
+										<li>jupyter에서 나오는 message가 어렵다.</li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 45.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Web으로 만들어서 올리면 된다</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 592.5px; top: 96.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 50;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-fb20c8" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 272px 391px; z-index: 11; transition-duration: 0.6s; transition-delay: 0.3s;" data-animation-type="slide-right">
+		
+									<div class="sl-block" data-block-type="shape" style="width: 224px; height: 350px; left: 160px; top: 216px;" data-name="shape-e1e4ba">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 18;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+		
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 229.5px; top: 364.875px;" data-name="line-d102fc">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 23;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 237px; top: 266.875px;" data-name="shape-4a0161">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 20;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" data-name="shape-6493da" style="width: 40px; height: 40px; left: 252px; top: 281.875px;">
+										<div class="sl-block-content" data-shape-type="symbol-bolt" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 22;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="0 0 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32">
+													<path d="M32 0l-24 16 6 4-14 12 24-12-6-4z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 160px; top: 394.125px; height: auto;">
+										<div class="sl-block-content" style="text-align: center; z-index: 19; font-size: 60%; padding: 5px;">
+											<h2>Accessible</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 160px; top: 429.125px; height: auto;" data-name="text-96a5c5">
+										<div class="sl-block-content" style="z-index: 21; text-align: center; font-size: 50%; padding: 14px;">
+											<p>접근이 쉽다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-0aae99" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 640px 388.125px; z-index: 24; transition-duration: 0.6s; transition-delay: 0.5s;" data-animation-type="slide-up">
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 597.5px; top: 362px;" data-name="line-2005ca">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 36;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" data-name="shape-6841f7" style="width: 224px; height: 350px; left: 528px; top: 213.125px;">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 31;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 605px; top: 264px;" data-name="shape-615153">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 32;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 40px; height: 40px; left: 620px; top: 279px;" data-name="shape-f69db8">
+										<div class="sl-block-content" data-shape-type="symbol-home" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 35;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="0 0 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32">
+													<path d="M16 0l-16 16h4v16h24v-16h4l-16-16zM24 28h-6v-6h-4v6h-6v-14.344l8-5.656 8 5.656v14.344z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 528px; top: 391.25px; height: auto;" data-name="text-2291a2">
+										<div class="sl-block-content" style="text-align: center; z-index: 34; font-size: 60%; padding: 5px;">
+											<h2>EnVIronment</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 528px; top: 426.25px; height: auto;" data-name="text-74a71a">
+										<div class="sl-block-content" style="z-index: 33; text-align: center; font-size: 50%; padding: 14px;">
+											<p>개인 PC 환경에 대한 문제가 없다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-422dd2" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 1008px 385px; z-index: 37; transition-duration: 0.6s; transition-delay: 0.7s;" data-animation-type="slide-left">
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 965.5px; top: 358.875px;" data-name="line-828d92">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 49;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 224px; height: 350px; left: 896px; top: 210px;" data-name="shape-edb4ad">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 44;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 973px; top: 260.875px;" data-name="shape-5147c7">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 45;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 40px; height: 40px; left: 988px; top: 275.875px;" data-name="shape-67b404">
+										<div class="sl-block-content" data-shape-type="symbol-earth" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 48;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="-9.5367431640625e-7 -9.5367431640625e-7 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="-9.5367431640625e-7 -9.5367431640625e-7 32 32">
+													<path d="M27.314 4.686c3.022 3.022 4.686 7.040 4.686 11.314s-1.664 8.292-4.686 11.314c-3.022 3.022-7.040 4.686-11.314 4.686s-8.292-1.664-11.314-4.686c-3.022-3.022-4.686-7.040-4.686-11.314s1.664-8.292 4.686-11.314c3.022-3.022 7.040-4.686 11.314-4.686s8.292 1.664 11.314 4.686zM25.899 25.9c1.971-1.971 3.281-4.425 3.821-7.096-0.421 0.62-0.824 0.85-1.073-0.538-0.257-2.262-2.335-0.817-3.641-1.621-1.375 0.927-4.466-1.802-3.941 1.276 0.81 1.388 4.375-1.858 2.598 1.079-1.134 2.050-4.145 6.592-3.753 8.946 0.049 3.43-3.504 0.715-4.729-0.422-0.824-2.279-0.281-6.262-2.434-7.378-2.338-0.102-4.344-0.314-5.25-2.927-0.545-1.87 0.58-4.653 2.584-5.083 2.933-1.843 3.98 2.158 6.731 2.232 0.854-0.894 3.182-1.178 3.375-2.18-1.805-0.318 2.29-1.517-0.173-2.199-1.358 0.16-2.234 1.409-1.512 2.467-2.632 0.614-2.717-3.809-5.247-2.414-0.064 2.206-4.132 0.715-1.407 0.268 0.936-0.409-1.527-1.594-0.196-1.379 0.654-0.036 2.854-0.807 2.259-1.325 1.225-0.761 2.255 1.822 3.454-0.059 0.866-1.446-0.363-1.713-1.448-0.98-0.612-0.685 1.080-2.165 2.573-2.804 0.497-0.213 0.973-0.329 1.336-0.296 0.752 0.868 2.142 1.019 2.215-0.104-1.862-0.892-3.915-1.363-6.040-1.363-3.051 0-5.952 0.969-8.353 2.762 0.645 0.296 1.012 0.664 0.39 1.134-0.483 1.439-2.443 3.371-4.163 3.098-0.893 1.54-1.482 3.238-1.733 5.017 1.441 0.477 1.773 1.42 1.464 1.736-0.734 0.64-1.185 1.548-1.418 2.541 0.469 2.87 1.818 5.515 3.915 7.612 2.644 2.644 6.16 4.1 9.899 4.1s7.255-1.456 9.899-4.1z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 896px; top: 388.125px; height: auto;" data-name="text-d3fbcf">
+										<div class="sl-block-content" style="text-align: center; z-index: 47; font-size: 60%; padding: 5px;">
+											<h2>Flexible</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 896px; top: 423.125px; height: auto;" data-name="text-fc4f90">
+										<div class="sl-block-content" style="z-index: 46; text-align: center; font-size: 50%; padding: 14px;">
+											<p>필요한 것만 보여줄 수 있다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 45.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>어렵다.</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 592.5px; top: 96.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 50;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-fb20c8" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 352px 394.125px; z-index: 11; transition-duration: 0.6s; transition-delay: 0.3s;" data-animation-type="slide-right">
+		
+									<div class="sl-block" data-block-type="shape" style="width: 224px; height: 350px; left: 240px; top: 219.125px;" data-name="shape-e1e4ba">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 18;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+		
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 309.5px; top: 368px;" data-name="line-d102fc">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 23;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 317px; top: 270px;" data-name="shape-4a0161">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 20;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" data-name="shape-6493da" style="width: 40px; height: 40px; left: 332px; top: 285px;">
+										<div class="sl-block-content" data-shape-type="symbol-bolt" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 22;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="0 0 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32">
+													<path d="M32 0l-24 16 6 4-14 12 24-12-6-4z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 240px; top: 397.25px; height: auto;">
+										<div class="sl-block-content" style="text-align: center; z-index: 19; font-size: 60%; padding: 5px;">
+											<h2>Frontend</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 240px; top: 432.25px; height: auto;" data-name="text-96a5c5">
+										<div class="sl-block-content" style="z-index: 21; text-align: center; font-size: 50%; padding: 14px;">
+											<p>HTML</p>
+		
+											<p>Javascript</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-0aae99" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 912px 391px; z-index: 24; transition-duration: 0.6s; transition-delay: 0.5s;" data-animation-type="slide-up">
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 869.5px; top: 364.875px;" data-name="line-2005ca">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 36;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" data-name="shape-6841f7" style="width: 224px; height: 350px; left: 800px; top: 216px;">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 31;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 877px; top: 266.875px;" data-name="shape-615153">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 32;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 40px; height: 40px; left: 892px; top: 281.875px;" data-name="shape-f69db8">
+										<div class="sl-block-content" data-shape-type="symbol-home" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 35;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="0 0 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32">
+													<path d="M16 0l-16 16h4v16h24v-16h4l-16-16zM24 28h-6v-6h-4v6h-6v-14.344l8-5.656 8 5.656v14.344z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 800px; top: 394.125px; height: auto;" data-name="text-2291a2">
+										<div class="sl-block-content" style="text-align: center; z-index: 34; font-size: 60%; padding: 5px;">
+											<h2>backend</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 800px; top: 429.125px; height: auto;" data-name="text-74a71a">
+										<div class="sl-block-content" style="z-index: 33; text-align: center; font-size: 50%; padding: 14px;">
+											<p>Django, Flask, FastApi</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+					</section>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 876px; left: 202px; top: 214px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>Streamlit</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 305px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 877px; left: 201px; top: 305px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>살펴보기</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 180px; left: 64px; top: 90px; height: auto;" data-name="text-1440c2" data-locked="true">
+								<div class="sl-block-content" style="text-align: left; z-index: 10; font-size: 500%; color: rgb(198, 194, 190);">
+									<h1>〞</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 960px; left: 160px; top: 216px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 11; text-align: left; font-size: 160%;">
+									<p>Streamlit is an open-source Python library that makes it easy to create and share beautiful, custom web apps for machine learning and data science.</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 44.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Process</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 592.5px; top: 94.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 50;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-fb20c8" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 272px 385px; z-index: 11; transition-duration: 0.6s; transition-delay: 0.3s;" data-animation-type="slide-right">
+		
+									<div class="sl-block" data-block-type="shape" style="width: 224px; height: 350px; left: 160px; top: 210px;" data-name="shape-e1e4ba">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 18;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+		
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 229.5px; top: 358.875px;" data-name="line-d102fc">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 23;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 237px; top: 260.875px;" data-name="shape-4a0161">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 20;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" data-name="shape-6493da" style="width: 40px; height: 40px; left: 252px; top: 275.875px;">
+										<div class="sl-block-content" data-shape-type="symbol-bolt" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 22;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="0 0 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32">
+													<path d="M32 0l-24 16 6 4-14 12 24-12-6-4z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 160px; top: 388.125px; height: auto;">
+										<div class="sl-block-content" style="text-align: center; z-index: 19; font-size: 60%; padding: 5px;">
+											<h2>IDEATION</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 160px; top: 423.125px; height: auto;" data-name="text-96a5c5">
+										<div class="sl-block-content" style="z-index: 21; text-align: center; font-size: 50%; padding: 14px;">
+											<p>python만 알면 됩니다.&nbsp;</p>
+		
+											<p>(웹을 잘 몰라도 됩니다.)</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-0aae99" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 640px 385px; z-index: 24; transition-duration: 0.6s; transition-delay: 0.5s;" data-animation-type="slide-up">
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 597.5px; top: 358.875px;" data-name="line-2005ca">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 36;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" data-name="shape-6841f7" style="width: 224px; height: 350px; left: 528px; top: 210px;">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 31;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 605px; top: 260.875px;" data-name="shape-615153">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 32;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 40px; height: 40px; left: 620px; top: 275.875px;" data-name="shape-f69db8">
+										<div class="sl-block-content" data-shape-type="symbol-home" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 35;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="0 0 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="0 0 32 32">
+													<path d="M16 0l-16 16h4v16h24v-16h4l-16-16zM24 28h-6v-6h-4v6h-6v-14.344l8-5.656 8 5.656v14.344z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 528px; top: 388.125px; height: auto;" data-name="text-2291a2">
+										<div class="sl-block-content" style="text-align: center; z-index: 34; font-size: 60%; padding: 5px;">
+											<h2>BUILD</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 528px; top: 423.125px; height: auto;" data-name="text-74a71a">
+										<div class="sl-block-content" style="z-index: 33; text-align: center; font-size: 50%; padding: 14px;">
+											<p>python의 여러 라이브러리를 바로 사용할 수 있습니다.&nbsp;</p>
+		
+											<p>(pandas, numpy, ...)&nbsp;</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="sl-block sl-block-group" data-block-type="group" data-name="group-422dd2" style="height: auto;">
+								<div class="sl-block-content sl-block-group-content" style="transform-origin: 1008px 385px; z-index: 37; transition-duration: 0.6s; transition-delay: 0.7s;" data-animation-type="slide-left">
+		
+									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 965.5px; top: 358.875px;" data-name="line-828d92">
+										<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="85" data-line-y2="0" data-line-color="#000000" data-line-start-type="none" data-line-end-type="none" style="z-index: 49;" data-line-width="3px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="85" height="1" viewBox="0 0 85 1">
+												<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+												<line class="line-element" stroke="#000000" stroke-width="3" x1="0.5" y1="0.5" x2="85.5" y2="0.5"></line>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 224px; height: 350px; left: 896px; top: 210px;" data-name="shape-edb4ad">
+										<div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(242, 237, 232)" data-shape-stretch="true" style="z-index: 44;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 224 350">
+												<rect width="224" height="350" rx="0" ry="0" class="shape-element" fill="rgb(242, 237, 232)"></rect>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 70px; height: 70px; left: 973px; top: 260.875px;" data-name="shape-5147c7">
+										<div class="sl-block-content" data-shape-type="circle" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" style="z-index: 45;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 70 70">
+												<ellipse rx="35" ry="35" cx="35" cy="35" class="shape-element" fill="rgb(255, 255, 255)"></ellipse>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="shape" style="width: 40px; height: 40px; left: 988px; top: 275.875px;" data-name="shape-67b404">
+										<div class="sl-block-content" data-shape-type="symbol-earth" data-shape-fill-color="rgb(0, 0, 0)" data-shape-stretch="false" style="z-index: 48;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveAspectRatio="xMidYMid" viewBox="-9.5367431640625e-7 -9.5367431640625e-7 32 32">
+												<g class="shape-element" fill="rgb(0, 0, 0)" data-viewbox="-9.5367431640625e-7 -9.5367431640625e-7 32 32">
+													<path d="M27.314 4.686c3.022 3.022 4.686 7.040 4.686 11.314s-1.664 8.292-4.686 11.314c-3.022 3.022-7.040 4.686-11.314 4.686s-8.292-1.664-11.314-4.686c-3.022-3.022-4.686-7.040-4.686-11.314s1.664-8.292 4.686-11.314c3.022-3.022 7.040-4.686 11.314-4.686s8.292 1.664 11.314 4.686zM25.899 25.9c1.971-1.971 3.281-4.425 3.821-7.096-0.421 0.62-0.824 0.85-1.073-0.538-0.257-2.262-2.335-0.817-3.641-1.621-1.375 0.927-4.466-1.802-3.941 1.276 0.81 1.388 4.375-1.858 2.598 1.079-1.134 2.050-4.145 6.592-3.753 8.946 0.049 3.43-3.504 0.715-4.729-0.422-0.824-2.279-0.281-6.262-2.434-7.378-2.338-0.102-4.344-0.314-5.25-2.927-0.545-1.87 0.58-4.653 2.584-5.083 2.933-1.843 3.98 2.158 6.731 2.232 0.854-0.894 3.182-1.178 3.375-2.18-1.805-0.318 2.29-1.517-0.173-2.199-1.358 0.16-2.234 1.409-1.512 2.467-2.632 0.614-2.717-3.809-5.247-2.414-0.064 2.206-4.132 0.715-1.407 0.268 0.936-0.409-1.527-1.594-0.196-1.379 0.654-0.036 2.854-0.807 2.259-1.325 1.225-0.761 2.255 1.822 3.454-0.059 0.866-1.446-0.363-1.713-1.448-0.98-0.612-0.685 1.080-2.165 2.573-2.804 0.497-0.213 0.973-0.329 1.336-0.296 0.752 0.868 2.142 1.019 2.215-0.104-1.862-0.892-3.915-1.363-6.040-1.363-3.051 0-5.952 0.969-8.353 2.762 0.645 0.296 1.012 0.664 0.39 1.134-0.483 1.439-2.443 3.371-4.163 3.098-0.893 1.54-1.482 3.238-1.733 5.017 1.441 0.477 1.773 1.42 1.464 1.736-0.734 0.64-1.185 1.548-1.418 2.541 0.469 2.87 1.818 5.515 3.915 7.612 2.644 2.644 6.16 4.1 9.899 4.1s7.255-1.456 9.899-4.1z"></path>
+												</g>
+											</svg></div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 896px; top: 388.125px; height: auto;" data-name="text-d3fbcf">
+										<div class="sl-block-content" style="text-align: center; z-index: 47; font-size: 60%; padding: 5px;">
+											<h2>LAUNCH</h2>
+										</div>
+									</div>
+									<div class="sl-block" data-block-type="text" style="width: 224px; left: 896px; top: 423.125px; height: auto;" data-name="text-fc4f90">
+										<div class="sl-block-content" style="z-index: 46; text-align: center; font-size: 50%; padding: 14px;">
+											<p>디자인을 크게 신경쓰지 않아도 적당히 예쁜 page를 만들 수 있습니다.&nbsp;</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+		
+		
+		
+		
+		
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 44.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Streamlit으로 만든 page</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 592.5px; top: 95.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-9a99bf" style="height: auto; width: 600px; left: 340px; top: 342px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>https://streamlit.io/gallery</p>
+								</div>
+							</div>
+						</section>
 					</section>
 					<section>
-						<h3>y = f(X)</h3>
-						<p> 입력값 X(x<sub>1</sub>, x<sub>2</sub> ..)에 어떤 로직 f를 적용하면 결과값 y가 나옵니다.</p>
-
-						<hr/>
-
-						<p class="fragment">입력값 X와 로직 f를 알려줄께, y값을 구해줘</p>
-						<p class="fragment">입력값 X와 출력값 y를 알려줄께, f를 좀 알아내줘</p>
-
+						<div class="sl-block" data-block-type="text" style="width: 800px; left: 249px; top: 225.5px; height: auto;" data-name="text-d18e72">
+							<div class="sl-block-content" style="z-index: 10; text-align: left;">
+								<ul>
+									<li><span style="font-size:1.0em">Streamlit과 비슷한 library로 Gradio가 있습니다.</span></li>
+									<li>둘 중 뭐가 낫다라고 판단하기 어렵습니다. (비슷함)&nbsp;</li>
+								</ul>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 800px; left: 207px; top: 54.5px; height: auto;" data-name="text-c29943">
+							<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+								<h2>Streamlit vs Gradio</h2>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+							<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+									<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+									<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+								</svg></div>
+						</div>
+						<div class="sl-block" data-block-type="text" data-name="text-addc8a" style="height: auto; width: 189px; left: 16.155px; top: 12.461px;">
+							<div class="sl-block-content" style="z-index: 13;">
+								<p>(Optional)</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 359.5px; height: auto;" data-name="text-efe0bc">
+							<div class="sl-block-content" style="z-index: 14; text-align: left;">
+								<ul>
+									<li>만약에 저에게 비교해보라고 한다면...
+										<ul>
+											<li>github의 star 수</li>
+											<li>google trends</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="image" data-name="image-20e2dc" style="width: 217.6px; height: 82.0459px; left: 923.106px; top: 118.977px; min-width: 1px; min-height: 1px;">
+							<div class="sl-block-content" style="z-index: 15;"><img class="" data-natural-width="366" data-natural-height="138" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10898633/pasted-from-clipboard.png"></div>
+						</div>
+						<div class="sl-block" data-block-type="image" data-name="image-2176e0" style="width: 276.708px; height: 76.895px; left: 80px; top: 121.552px; min-width: 1px; min-height: 1px;">
+							<div class="sl-block-content" style="z-index: 16;"><img class="" data-natural-width="1461" data-natural-height="406" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10898637/pasted-from-clipboard.png"></div>
+						</div>
 					</section>
-					
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 204px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>Streamlit</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 295px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 295px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>Streamlit으로 이것저것 만들어봅시다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-addc8a" style="height: auto; width: 189px; left: 16.155px; top: 12.461px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>실습</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Uber Pickups In NYC</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-a45c2a" style="height: auto; width: 1029px; left: 125.5px; top: 120px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>무작정 따라해봅시다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-99b289" style="height: auto; width: 826px; left: 214px; top: 349px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>https://docs.streamlit.io/library/get-started/create-an-app</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Streamlit Controls</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-a45c2a" style="height: auto; width: 1029px; left: 125.5px; top: 120px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>Streamlit의 API를 보며 기능을 익혀봅시다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-99b289" style="height: auto; width: 826px; left: 214px; top: 206px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>https://docs.streamlit.io/library/api-reference</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-21039a" style="height: auto; width: 600px; left: 340px; top: 332px;">
+								<div class="sl-block-content" style="z-index: 14;">
+									<ol>
+										<li>Text</li>
+										<li>Data</li>
+										<li>Chart</li>
+										<li>Widget</li>
+										<li>Layout</li>
+										<li>form</li>
+										<li>cache</li>
+									</ol>
+								</div>
+							</div>
+						</section>
+					</section>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 204px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>Deep Learning</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 295px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 295px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>가볍게 접근하기</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 1046px; left: 148px; top: 214.5px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 10; text-align: left; font-size: 140%;">
+									<p><em>딥 러닝(Deep Learning)은 </em></p>
+		
+									<p><em>머신 러닝(Machine Learning)의 특정한 한 분야로서 </em></p>
+		
+									<p><em>인공 신경망(Artificial Neural Network)의 층을 </em></p>
+		
+									<p><em>연속적으로 깊게 쌓아올려 데이터를 학습하는 방식을 말합니다</em></p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Deep Learning</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 180px; left: 64px; top: 90px; height: auto;" data-name="text-1440c2" data-locked="true">
+								<div class="sl-block-content" style="text-align: left; z-index: 13; font-size: 500%; color: rgb(198, 194, 190);">
+									<h1>〞</h1>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="image" data-name="image-4f7ad1" style="width: 462.002px; height: 266.4px; left: 40.998px; top: 120.8px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 10;"><img class="" data-natural-width="2036" data-natural-height="1174" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10891486/pasted-from-clipboard.png"></div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-ed9828" style="width: 657.615px; height: 450.8px; left: 560px; top: 206.6px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 11;"><img class="" data-natural-width="1380" data-natural-height="946" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10891488/pasted-from-clipboard.png"></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-fe3602" style="height: auto; width: 600px; left: -28.001px; top: 401px;">
+								<div class="sl-block-content" style="z-index: 12; font-size: 45%;">
+									<p>https://post.naver.com/viewer/postView.naver?volumeNo=33586648&amp;memberNo=38386150</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-c919a4" style="height: auto; width: 600px; left: 588.808px; top: 649.4px;">
+								<div class="sl-block-content" style="z-index: 13; font-size: 45%;">
+									<p>https://skirttt.com/9-딥러닝/</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 222px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>머신러닝 vs 딥러닝</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-638ff1" style="width: 666px; height: 532.8px; left: 511.421px; top: 115.2px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 12;"><img class="" data-natural-width="1600" data-natural-height="1280" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10898644/pasted-from-clipboard.png"></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-630ab1" style="height: auto; width: 600px; left: 340px; top: 640px;">
+								<div class="sl-block-content" style="z-index: 13; font-size: 45%;">
+									<p>https://www.scs.org.sg/articles/machine-learning-vs-deep-learning</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-4cd78e" style="width: 450px; height: 360px; left: 41.895px; top: 252px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 14;"><img class="" data-natural-width="1600" data-natural-height="1280" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10898646/pasted-from-clipboard.png"></div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" data-name="text-6f7b2e" style="height: auto; width: 960px; left: 160px; top: 342px;">
+								<div class="sl-block-content" style="z-index: 10; font-size: 130%;">
+									<h2>추론의 영역에서는 전통적인 머신러닝과 비슷합니다.</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>딥러닝 모델 추론하기</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+						</section>
+					</section>
 					<section>
-						<h3>간단한 용어 설명</h3>
-						<p>X feature</p>
-						<p>Y target</p>
-						<p>f model</p>
-						<p>학습 : X, y -> f </p>
-						<p>추론 : f(X') -> y' </p>
+						<div class="sl-block" data-block-type="text" data-name="text-6f7b2e" style="height: auto; width: 960px; left: 160px; top: 216px;">
+							<div class="sl-block-content" style="z-index: 10; font-size: 130%;">
+								<p>"Attention is All You Need"</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+							<div class="sl-block-content" style="text-align: center; z-index: 11; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+								<h2>Transformer</h2>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+							<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 12;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+									<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+									<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+								</svg></div>
+						</div>
+						<div class="sl-block" data-block-type="text" data-name="text-addc8a" style="height: auto; width: 189px; left: 16.155px; top: 12.461px;">
+							<div class="sl-block-content" style="z-index: 13;">
+								<p>(Optional)</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" data-name="text-10cc4f" style="height: auto; width: 600px; left: 329px; top: 329px;">
+							<div class="sl-block-content" style="z-index: 14;">
+								<ul>
+									<li>Google, 2017</li>
+									<li>원래 자연어 처리 때문에 나왔습니다.</li>
+									<li>온갖 분야에 다 쓰임</li>
+									<li>GPT의 T도 Transformer 입니다</li>
+								</ul>
+							</div>
+						</div>
 					</section>
-					<section>
-						<h3>Regression vs Classification</h3>
-						<p>
-							Regression : 수치를 예측
-						</p>
-						<p>
-							Classification : 분류
-						</p>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 204px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>Huggingface</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 295px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 295px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>Huggingface site를 간단히 둘러봅시다.</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 180px; left: 64px; top: 90px; height: auto;" data-name="text-1440c2" data-locked="true">
+								<div class="sl-block-content" style="text-align: left; z-index: 10; font-size: 500%; color: rgb(198, 194, 190);">
+									<h1>〞</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 960px; left: 160px; top: 216px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 11; text-align: left; font-size: 160%;">
+									<p><em>The platform where the machine learning community collaborates on models, datasets, and applications.</em></p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>HuggingFace Transformers</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-a45c2a" style="height: auto; width: 1029px; left: 123px; top: 320px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>Pre-trained된 <s>Transformer</s> 모델을</p>
+		
+									<p>가져오고, 훈련시키고, 저장할 수 있는 API를 제공합니다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-714ff5" style="height: auto; width: 672px; left: 288px; top: 486px;">
+								<div class="sl-block-content" style="z-index: 13; font-size: 90%;">
+									<p>https://huggingface.co/docs/transformers/index</p>
+								</div>
+							</div>
+						</section>
 					</section>
-				</section>
-				<section>
-					<section>
-						<h5>Optional</h5>
-						<h2>AutoML 모델 만들기</h2>
-						<h4>PyCaret</h4>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 204px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>딥러닝 모델 추론하기</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 295px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 295px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>Streamlit으로 추론 서비스를 만들어봅시다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-addc8a" style="height: auto; width: 189px; left: 16.155px; top: 12.461px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>실습</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Image Classification</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-a45c2a" style="height: auto; width: 1029px; left: 123px; top: 198px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>이미지 분류 모델을 Streamlit page로 만들어 봅시다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-20a19d" style="height: auto; width: 734px; left: 270.5px; top: 360px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>https://huggingface.co/google/vit-base-patch16-224</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Age Classification</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-a45c2a" style="height: auto; width: 1029px; left: 123px; top: 198px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>&nbsp;위와 동일한 이미지 모델입니다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-20a19d" style="height: auto; width: 734px; left: 270.5px; top: 360px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>https://huggingface.co/nateraw/vit-age-classifier</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17; font-size: 110%;" data-has-line-height="">
+									<h2>Huggingface Space</h2>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-a45c2a" style="height: auto; width: 1029px; left: 123px; top: 198px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>실습한 모델을 Huggingface Space에 올려 봅시다.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-20a19d" style="height: auto; width: 734px; left: 270.5px; top: 360px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>https://huggingface.co/spaces</p>
+								</div>
+							</div>
+						</section>
 					</section>
-					<section>
-						<h3>Pycaret</h3>
-						<p>https://pycaret.org/</p>
-						<p>An open-source, low-code machine learning library in Python</p>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 204px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>LLM</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 295px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 295px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>가볍게 접근하기</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>LLM</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-91425d" style="height: auto; width: 600px; left: 337.5px; top: 114px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<h3>Large Language Model</h3>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-0bad0e" style="height: auto; width: 800px; left: 240px; top: 342px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>그럼 일단 언어 모델(Language Model)부터 살펴볼까요?</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Language Model</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-91425d" style="height: auto; width: 966px; left: 160px; top: 114px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<h3>입력값(자연어)을 기반으로 가장 적절한 출력값을 출력하도록 학습된 모델</h3>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-0bad0e" style="height: auto; width: 800px; left: 237.5px; top: 216px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>단어 시퀀스에 확률을 할당</p>
+		
+									<p>-&gt; 가장 자연스러운 단어 시퀀스를 찾는 작업</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 237.5px; top: 362px;" data-name="text-815765">
+								<div class="sl-block-content" style="z-index: 14;">
+									<p>가장 많이 쓰는 건 다음 단어를 예측하는 것</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Embedding</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-91425d" style="height: auto; width: 966px; left: 160px; top: 114px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<h3>자연어를 벡터로 변환</h3>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 180px; left: 224px; top: 100px; height: auto;" data-name="text-1440c2" data-locked="true">
+								<div class="sl-block-content" style="text-align: left; z-index: 13; font-size: 500%; color: rgb(198, 194, 190);">
+									<h1>〞</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 249px; top: 214.5px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 14; text-align: left; font-size: 130%;">
+									<p><em>An embedding is a vector (list) of floating point numbers. The distance between two vectors measures their relatedness. Small distances suggest high relatedness and large distances suggest low relatedness.</em></p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-b3e535" style="height: auto; width: 600px; left: 280px; top: 540px;">
+								<div class="sl-block-content" style="z-index: 15;">
+									<p>머신러닝/딥러닝은 입력값이 다 숫자여야 한다.</p>
+		
+									<p>자연어를 숫자로 (정확히는 벡터로)</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Embedding</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-91425d" style="height: auto; width: 966px; left: 160px; top: 114px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<h3>조금 더 부연설명..</h3>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 1127px; left: 73px; top: 213.5px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 14; text-align: left;">
+									<ul>
+										<li>
+											<p>"임베딩"은 콘텐츠를 "부동 소수점 숫자의 배열"로 변환하는 것</p>
+										</li>
+										<li>
+											<p>이 배열의 핵심은 "콘텐츠 내용의 길이"에 관계없이 "배열의 크기"가 항상 같다는 것</p>
+										</li>
+										<li>
+											<p>배열의 크기는 사용하는 임베딩 모델에 의해서 결정됨 300, 1000, 1536 등</p>
+										</li>
+										<li>
+											<p>이 숫자 배열을 생각하는 가장 좋은 방법은 이걸 "매우 이상한 다차원 공간의 좌표"로 상상하는 것</p>
+										</li>
+										<li>
+											<p>공간에서의 위치는 임베딩 모델의 "이상한, 대부분은 이해할 수 없는 세계에 대한 이해"에 따른 콘텐츠의 "의미론적 의미(Semantic Meaning)"를 나타냄</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-b3e535" style="height: auto; width: 600px; left: 280px; top: 540px;">
+								<div class="sl-block-content" style="z-index: 15;">
+									<p>https://news.hada.io/topic?id=11593</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Embedding</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-d3d9ca" style="width: 586.342px; height: 173.915px; left: 80px; top: 144px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 12;"><img class="" data-natural-width="1652" data-natural-height="490" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10892771/pasted-from-clipboard.png"></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-4ee8fa" style="height: auto; width: 600px; left: 56px; top: 317.915px;">
+								<div class="sl-block-content" style="z-index: 13; font-size: 45%;">
+									<p>https://openai.com/blog/new-and-improved-embedding-model</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-22eed2" style="width: 777.6px; height: 300.844px; left: 459px; top: 360px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 14;"><img class="" data-natural-width="1388" data-natural-height="537" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10892772/pasted-from-clipboard.png"></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-539c27" style="height: auto; width: 600px; left: 547.8px; top: 666.844px;">
+								<div class="sl-block-content" style="z-index: 15; font-size: 45%;">
+									<p>https://towardsdatascience.com/a-guide-to-word-embeddings-8a23817ab60f</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>그냥 재미로</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-8c8b56" style="height: auto; width: 600px; left: 340px; top: 342px;">
+								<div class="sl-block-content" style="z-index: 12; font-size: 130%;">
+									<p>https://semantle-ko.newsjel.ly/</p>
+								</div>
+							</div>
+						</section>
+						<section>
+		
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>GPT</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-8c8b56" style="height: auto; width: 600px; left: 340px; top: 144px;">
+								<div class="sl-block-content" style="z-index: 12; font-size: 130%;">
+									<p>Generative</p>
+		
+									<p>Pre-trained</p>
+		
+									<p>Transformer</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-a0896b" style="width: 189.046px; height: 51.2px; left: 880px; top: 190.4px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 13;"><img class="" data-natural-width="432" data-natural-height="117" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10892782/pasted-from-clipboard.png"></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-118b81" style="height: auto; width: 600px; left: 347px; top: 414px;">
+								<div class="sl-block-content" style="z-index: 14;">
+									<p>GPT4까지 나왔어요.</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 347px; top: 474px;" data-name="text-1c1b34">
+								<div class="sl-block-content" style="z-index: 15;">
+									<p>GPT3의 경우 1750억개 파라미터 모델(175B)</p>
+								</div>
+							</div>
+						</section>
 					</section>
-					<section>
-						<h3>가상환경을 하나 만들어주세요.</h3>
-						<code>
-							python -m venv .automl
-						</code>
+					<section class="stack">
+						<section data-background-color="rgb(229, 230, 226)">
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 204px; height: auto;">
+								<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+									<h1>ChatGPT</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 295px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+										<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 295px; height: auto;" data-name="text-d18e72">
+								<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+									<p>살펴보기</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>ChatGPT 둘러보기</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-91425d" style="height: auto; width: 966px; left: 160px; top: 114px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<h3>ChatgPT를 사용하기 위한 관점에서 살펴봅시다.</h3>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-0bad0e" style="height: auto; width: 800px; left: 243px; top: 278px;">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>https://platform.openai.com/</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 237.5px; top: 377px;" data-name="text-459ad0">
+								<div class="sl-block-content" style="z-index: 14;">
+									<ul>
+										<li>Documentation</li>
+										<li>Example</li>
+										<li>Playground</li>
+										<li>개인 설정</li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Playground 둘러보기</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="image" data-name="image-0dd36f" style="width: 1016.8px; height: 553.947px; left: 122.051px; top: 128.895px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 12;"><img class="" data-natural-width="2478" data-natural-height="1350" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10892790/pasted-from-clipboard.png"></div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>Playground 둘러보기</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-551b7e" style="height: auto; width: 771.19px; left: 160px; top: 144px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<h3>Role</h3>
+		
+									<ul>
+										<li>System : 모델 사용 전 역할/설정 등 구성</li>
+										<li>User : 실제 메시지</li>
+										<li>Assistant : ChatGPT(User와의 대화 저장, 이전 대화 문맥)</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="height: auto; width: 960px; left: 147.916px; top: 339.636px;" data-name="text-d43698">
+								<div class="sl-block-content" style="z-index: 13;">
+									<h3>설정</h3>
+		
+									<ul>
+										<li><strong>Temperature : 대답의 random 정도(높을수록 랜덤하게, 낮을수록 일관되게)</strong></li>
+										<li>Top P : 샘플링시 확률이 상위 몇 %까지인 값만 취할까 (그냥 1로 놓고 쓰는 게..)&nbsp;</li>
+										<li>Frequency penalty: 동일한 단어/문구를 반복하지 않도록</li>
+										<li>Presence penalty : 다양한 범위에 토큰을 포함시키도록 함</li>
+									</ul>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-2f03e7" style="height: auto; width: 765.148px; left: 114.852px; top: 576px;">
+								<div class="sl-block-content" style="z-index: 14; font-size: 70%;">
+									<p>* OpenAI 문서에서는 temperature와 TopP를 동시에 변경하지 말라고 가이드함</p>
+								</div>
+							</div>
+						</section>
+						<section>
+							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 38.5px; height: auto;" data-name="text-c29943">
+								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
+									<h1>token</h1>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 105.5px;">
+								<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="95" data-line-y2="0" data-line-color="#f2ede8" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="95" height="1" viewBox="0 0 95 1">
+										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="95" y2="0"></line>
+										<line class="line-element" stroke="#f2ede8" stroke-width="4" x1="0" y1="0" x2="95" y2="0"></line>
+									</svg></div>
+							</div>
+							<div class="sl-block" data-block-type="text" data-name="text-6d8d3b" style="height: auto; width: 600px; left: 340px; top: 342px;">
+								<div class="sl-block-content" style="z-index: 12;">
+									<p>https://platform.openai.com/tokenizer</p>
+								</div>
+							</div>
+							<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 329.93px; top: 233.244px;" data-name="text-72eb13">
+								<div class="sl-block-content" style="z-index: 13;">
+									<p>단어의 조각, chatgpt의 처리 단위</p>
+		
+									<p>한글은 일반적으로 1글자 1토큰</p>
+								</div>
+							</div>
+						</section>
 					</section>
-					<section>
-						<pre data-id="code-animation"><code class="shell" data-trim>
-							pip install jupyter
-						</code></pre>
+					<section data-background-color="rgb(229, 230, 226)">
+						<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 204px; height: auto;">
+							<div class="sl-block-content" style="z-index: 10; padding: 20px; line-height: 1.04;" data-has-line-height="">
+								<h1>LLM 모델 추론하기</h1>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="line" data-name="line-a5c0c7" style="width: auto; height: auto; left: 483px; top: 295px;">
+							<div class="sl-block-content" data-line-x1="0" data-line-y1="0" data-line-x2="314" data-line-y2="0" data-line-color="#ffffff" data-line-start-type="none" data-line-end-type="none" style="z-index: 11;" data-line-width="4px"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="314" height="1" viewBox="0 0 314 1">
+									<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="0" x2="314" y2="0"></line>
+									<line class="line-element" stroke="#ffffff" stroke-width="4" x1="0" y1="0" x2="314" y2="0"></line>
+								</svg></div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="width: 1120px; left: 80px; top: 295px; height: auto;" data-name="text-d18e72">
+							<div class="sl-block-content" style="z-index: 12; text-align: center; color: rgb(0, 0, 0); font-size: 120%; padding: 20px;">
+								<p>ChatGPT API를 통하여...</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" data-name="text-addc8a" style="height: auto; width: 189px; left: 16.155px; top: 12.461px;">
+							<div class="sl-block-content" style="z-index: 13;">
+								<p>실습</p>
+							</div>
+						</div>
 					</section>
-				</section>
-				
-				<!--section data-external="slide.html"/-->
+				</div>
 			</div>
 		</div>
 
@@ -260,7 +2136,12 @@
 							return !!document.querySelector( '[data-external],[data-external-replace]' );
 						}
 					},
-				]
+				],
+				width: 1280,
+				height: 720,
+				transition: "slide",
+				backgroundTransition: "fade",
+				center: false
 			});
 		</script>
 	</body>
