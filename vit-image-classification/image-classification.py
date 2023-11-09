@@ -11,9 +11,6 @@ st.title('이미지를 분류합니다.')
 
 file_name = st.file_uploader('이미지를 업로드하세요.', type=['png', 'jpg', 'jpeg'])
 
-# url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
-# image = Image.open(requests.get(url, stream=True).raw)
-
 if file_name is not None:
     image = Image.open(file_name)
     st.image(image, use_column_width=True)
