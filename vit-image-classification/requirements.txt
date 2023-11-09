@@ -1,0 +1,7 @@
+transformers
+pillow
+
+# https://pytorch.org/
+torch
+torchvision
+torchaudio
