@@ -386,7 +386,7 @@
 						<section>
 							<div class="sl-block" data-block-type="text" style="width: 800px; left: 240px; top: 54.5px; height: auto;" data-name="text-c29943">
 								<div class="sl-block-content" style="text-align: center; z-index: 10; padding: 5px; line-height: 1.17;" data-has-line-height="">
-									<h1>Y의 값을 예측해보세요.</h1>
+									<h1>y의 값을 예측해보세요.</h1>
 								</div>
 							</div>
 							<div class="sl-block" data-block-type="line" data-name="line-29000e" style="width: auto; height: auto; left: 590px; top: 121.5px;">
@@ -400,8 +400,8 @@
 									<table>
 										<tbody>
 											<tr>
-												<th>X</th>
-												<th>Y</th>
+												<th>x</th>
+												<th>y</th>
 											</tr>
 											<tr>
 												<td>1</td>
@@ -421,7 +421,7 @@
 											</tr>
 											<tr>
 												<td>5</td>
-												<td>?</td>
+												<td><strong>?</strong></td>
 											</tr>
 										</tbody>
 									</table>
@@ -432,11 +432,9 @@
 									<table>
 										<tbody>
 											<tr>
-												<th>X<sub>1</sub>
-												</th>
-												<th>X<sub>2</sub>
-												</th>
-												<th>Y</th>
+												<th>x<sub>1</sub></th>
+												<th>x<sub>2</sub></th>
+												<th>y</th>
 											</tr>
 											<tr>
 												<td>1</td>
@@ -461,58 +459,57 @@
 											<tr>
 												<td>5</td>
 												<td>6</td>
-												<td>?</td>
+												<td><strong>?</strong></td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<div class="sl-block" data-block-type="table" style="height: auto; min-width: 120px; width: 288px; left: 845px; top: 360px;" data-name="table-69fe24">
+							<div class="sl-block" data-block-type="table" style="height: auto; min-width: 120px; width: 355px; left: 845px; top: 360px;" data-name="table-69fe24">
 								<div class="sl-block-content fragment" style="z-index: 14; text-align: center;" data-table-cols="5" data-table-rows="6" data-table-has-header="true" data-fragment-index="2">
 									<table>
 										<tbody>
 											<tr>
-												<th>X<sub>1</sub>
-												</th>
-												<th>X<sub>2</sub></th>
-												<th>...</th>
-												<th>X</th>
-												<th>Y</th>
+												<th>x<sub>1</sub></th>
+												<th>x<sub>2</sub></th>
+												<th style="width: 60px;">...</th>
+												<th>x<sub>100</sub></th>
+												<th>y</th>
 											</tr>
 											<tr>
 												<td>1</td>
 												<td>2</td>
-												<td>4</td>
-												<td></td>
-												<td></td>
+												<td style="width: 60px;">...</td>
+												<td>7</td>
+												<td>5</td>
 											</tr>
 											<tr>
 												<td>2</td>
-												<td>3</td>
-												<td>7</td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>7</td>
+												<td>37</td>
+												<td style="width: 60px;">...</td>
 												<td>13</td>
-												<td></td>
-												<td></td>
+												<td>23</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>7</td>
+												<td style="width: 60px;">...</td>
+												<td>4</td>
+												<td>88</td>
 											</tr>
 											<tr>
 												<td>4</td>
 												<td>1</td>
-												<td>9</td>
-												<td></td>
-												<td></td>
+												<td style="width: 60px;">...</td>
+												<td>99</td>
+												<td>3</td>
 											</tr>
 											<tr>
 												<td>5</td>
 												<td>6</td>
-												<td>?</td>
-												<td></td>
-												<td></td>
+												<td style="width: 60px;">...</td>
+												<td>3</td>
+												<td><strong>?</strong></td>
 											</tr>
 										</tbody>
 									</table>
@@ -582,7 +579,7 @@
 									</div>
 									<div class="sl-block" data-block-type="text" style="width: 430px; left: 185px; top: 200.25px; height: auto;" data-name="text-66cbb8">
 										<div class="sl-block-content" style="text-align: left; z-index: 19; padding: 20px;">
-											<h2>F(x) -&gt; Y</h2>
+											<h2>f(x) -&gt; y</h2>
 										</div>
 									</div>
 									<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 185px; top: 280.25px;" data-name="line-e21456">
@@ -641,7 +638,7 @@
 											<p>f : model</p>
 										</li>
 										<li>
-											<p>X, Y -&gt; f : 학습</p>
+											<p>X, y -&gt; f : 학습</p>
 										</li>
 										<li>
 											<p>f(X') -&gt; y' : 예측</p>
@@ -760,15 +757,15 @@
 							<div class="sl-block" data-block-type="code" data-name="code-ef67e0" style="width: 902px; height: 352px; left: 189px; top: 174px;">
 								<div class="sl-block-content notranslate" data-highlight-theme="xcode" data-code-frame="none" style="z-index: 13;">
 									<pre style="font-size: 20px; line-height: 24px;" class="python"><code data-line-numbers="">import pandas as pd
-		from pycaret.classification import *
-		
-		df = pd.read_csv('&lt;filename&gt;')
-		s = setup(df, target='&lt;target column&gt;', session_id=123)
-		best = compare_models()
-		save_model(best, '&lt;modelfile name&gt;')
-		
-		loaded_pipeline = load_model('&lt;modelfile name&gt;')
-		predict_model(loaded_pipeline, data=new_df)</code></pre>
+from pycaret.classification import *
+
+df = pd.read_csv('&lt;filename&gt;')
+s = setup(df, target='&lt;target column&gt;', session_id=123)
+best = compare_models()
+save_model(best, '&lt;modelfile name&gt;')
+
+loaded_pipeline = load_model('&lt;modelfile name&gt;')
+predict_model(loaded_pipeline, data=new_df)</code></pre>
 								</div>
 							</div>
 						</section>
@@ -944,8 +941,8 @@
 							</div>
 		
 		
-							<div class="sl-block" data-block-type="image" data-name="image-9b9bb1" style="width: 947.2px; height: 532.8px; left: 160px; top: 144px;">
-								<div class="sl-block-content" style="z-index: 12;"><img class="" data-natural-width="1920" data-natural-height="1080" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10905694/pasted-from-clipboard.png"></div>
+							<div class="sl-block" data-block-type="image" data-name="image-9b9bb1" style="width: 947.2px; height: 532.8px; left: 160px; top: 144px; min-width: 1px; min-height: 1px;">
+								<div class="sl-block-content" style="z-index: 12;"><img class="" data-natural-width="1920" data-natural-height="1080" data-lazy-loaded="" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/2564116/images/10905694/pasted-from-clipboard.png"></div>
 							</div>
 						</section>
 					</section>
@@ -1742,7 +1739,7 @@
 							</div>
 							<div class="sl-block" data-block-type="text" data-name="text-91425d" style="height: auto; width: 966px; left: 160px; top: 114px;">
 								<div class="sl-block-content" style="z-index: 12;">
-									<h3>ChatgPT를 사용하기 위한 관점에서 살펴봅시다.</h3>
+									<h3>ChatGPT를 사용하기 위한 관점에서 살펴봅시다.</h3>
 								</div>
 							</div>
 							<div class="sl-block" data-block-type="text" data-name="text-0bad0e" style="height: auto; width: 800px; left: 243px; top: 278px;">
