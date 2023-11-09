@@ -20,11 +20,10 @@ output = model(**inputs)
 # Predicted Class probabilities
 proba = output.logits.softmax(1)
 
-# Predicted Classes
-# preds = proba.argmax(1)
-
 values, indices = torch.topk(proba, k=5)
 
-result = {model.config.id2label[i.item()]: v.item() for i, v in zip(indices.numpy()[0], values.detach().numpy()[0])}
+result_dict = {model.config.id2label[i.item()]: v.item() for i, v in zip(indices.numpy()[0], values.detach().numpy()[0])}
+first_result = list(result_dict.keys())[0]
 
-print(f'predicted result:{result}')
+print(f'predicted result:{result_dict}')
+print(f'first_result: {first_result}')
