@@ -1,5 +1,6 @@
 .DS_Store
 .vscode
+.env
 
 # python
 __pycache__
@@ -8,3 +9,6 @@ __pycache__
 # npm files
 node_modules
 yarn-error.log
+
+# pycaret
+logs.log
